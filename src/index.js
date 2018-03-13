@@ -20,4 +20,4 @@ const test = function() {
   return new mapboxgl.Marker(div1).setLngLat([-60.009151, 40.705086]).addTo(map)
 }
 
-test()
+marker("hotel", [-74.009151, 40.705086]).addTo(map)

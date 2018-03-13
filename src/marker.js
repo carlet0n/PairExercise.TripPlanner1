@@ -1,28 +1,25 @@
-// const mapboxgl = require('mapbox-gl');
+const mapboxgl = require('mapbox-gl');
 
-class buildMarker {
-	constructor(type) {
-		// this.ele = document.createElement('div');
-		this.type = this.assignType();
-	}
-
-	assignType(type) {
-		const activity = 'http://i.imgur.com/WbMOfMl.png';
-		const hotel = 'http://i.imgur.com/D9574Cu.png';
-		const restaurant = 'http://i.imgur.com/cqR6pUI.png';
-
-		if (type === 'activity') {
-			return activity;
-		}
-
-		if (type === 'hotel') {
-			return hotel;
-		}
-
-		if (type === 'restaurant') {
-			return restaurant;
-		}
-	}
+const iconURLs =  {
+	activity: 'url(http://i.imgur.com/WbMOfMl.png)',
+	hotel: 'url(http://i.imgur.com/D9574Cu.png)',
+	restaurant: 'url(http://i.imgur.com/cqR6pUI.png)',
 }
 
-console.log(new buildMarker('hotel'));
+const buildMarker = (type, coords) => {
+	const newMarker = document.createElement("div")
+	newMarker.style.width = "32px"
+	newMarker.style.height = "39px"
+	console.log(coords)
+	console.log(type)
+	if (type === "activity") newMarker.style.backgroundImage = iconURLs.activity
+	if (type === "hotel") newMarker.style.backgroundImage = iconURLs.hotel
+	if (type === "restaurant") newMarker.style.backgroundImage = iconURLs.restaurant
+	return new mapboxgl.Marker(newMarker).setLngLat(coords)
+}
+		
+
+//console.log(buildMarker("hotel"));
+
+module.exports = buildMarker
+// return new mapboxgl.Marker(div1).setLngLat([-60.009151, 40.705086]).addTo(map)
